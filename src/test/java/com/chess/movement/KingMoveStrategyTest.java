@@ -19,12 +19,12 @@ public class KingMoveStrategyTest {
 
     @Test
     void givenKingAtD4_whenCalculatingMoves_thenReturnsEightMoves() {
+
         ChessPiece king = new King("D4");
         String validMoves = kingMoveStrategy.calculateValidMoves(king);
         assertEquals("C3, C4, C5, D3, D5, E3, E4, E5", validMoves);
     }
 
-    /** Corner Cases **/
     static Stream<Object[]> kingCornerCases() {
         return Stream.of(
                 new Object[]{"A1", "A2, B1, B2"},
@@ -37,12 +37,12 @@ public class KingMoveStrategyTest {
     @ParameterizedTest
     @MethodSource("kingCornerCases")
     void givenKingAtCorner_whenCalculatingMoves_thenReturnsValidMoves(String position, String expectedMoves) {
+
         ChessPiece king = new King(position);
         String validMoves = kingMoveStrategy.calculateValidMoves(king);
         assertEquals(expectedMoves, validMoves);
     }
 
-    /**  Edge Cases **/
     static Stream<Object[]> kingEdgeCases() {
         return Stream.of(
                 new Object[]{"A5", "A4, A6, B4, B5, B6"},
@@ -55,6 +55,7 @@ public class KingMoveStrategyTest {
     @ParameterizedTest
     @MethodSource("kingEdgeCases")
     void givenKingAtEdge_whenCalculatingMoves_thenReturnsValidMoves(String position, String expectedMoves) {
+
         ChessPiece king = new King(position);
         String validMoves = kingMoveStrategy.calculateValidMoves(king);
         assertEquals(expectedMoves, validMoves);
@@ -72,6 +73,7 @@ public class KingMoveStrategyTest {
     @ParameterizedTest
     @MethodSource("invalidKingPositions")
     void givenInvalidPosition_whenCreatingKing_thenThrowsInvalidPositionException(String position, String expectedMessage) {
+
         InvalidPositionException exception = assertThrows(InvalidPositionException.class, () -> new King(position));
         assertEquals(expectedMessage, exception.getMessage());
     }

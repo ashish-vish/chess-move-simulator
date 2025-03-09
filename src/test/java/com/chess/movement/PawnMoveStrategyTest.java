@@ -24,37 +24,21 @@ public class PawnMoveStrategyTest {
     @Test
     public void givenPawnAtD8_whenCalculatingMoves_thenThrowsNoValidMoveException() {
         ChessPiece pawn = new Pawn("D8");
-
-
-        NoValidMoveException exception = assertThrows(
-                NoValidMoveException.class,
-                () -> pawnMoveStrategy.calculateValidMoves(pawn),
-                "Expected NoValidMoveException when pawn is at D8"
-        );
-
+        NoValidMoveException exception = assertThrows(NoValidMoveException.class,() -> pawnMoveStrategy.calculateValidMoves(pawn));
         assertEquals("No valid Moves", exception.getMessage());
     }
 
     @Test
     public void givenInvalidPositionA9_whenCreatingPawn_thenThrowsInvalidPositionException() {
 
-        InvalidPositionException exception = assertThrows(
-                InvalidPositionException.class,
-                () -> new Pawn("A9"),
-                "Expected InvalidPositionException for invalid position A9"
-        );
-
+        InvalidPositionException exception = assertThrows(InvalidPositionException.class,() -> new Pawn("A9"));
         assertEquals("Invalid position: A9", exception.getMessage());
     }
 
     @Test
     public void givenInvalidPositionP3_whenCreatingPawn_thenThrowsInvalidPositionException() {
-        InvalidPositionException exception = assertThrows(
-                InvalidPositionException.class,
-                () -> new Pawn("P3"),
-                "Expected InvalidPositionException for invalid position P3"
-        );
 
+        InvalidPositionException exception = assertThrows(InvalidPositionException.class,() -> new Pawn("P3"));
         assertEquals("Invalid position: P3", exception.getMessage());
     }
 }
