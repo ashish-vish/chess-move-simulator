@@ -1,10 +1,11 @@
 package main.java.com.chess.movement;
 
+import main.java.com.chess.exception.NoValidMoveException;
 import main.java.com.chess.models.ChessPiece;
 
 import java.util.Optional;
 
-public class PawnMovingStrategy implements MoveStrategy{
+public class PawnMoveStrategy implements MoveStrategy{
     @Override
     public String calculateValidMoves(ChessPiece piece) {
 
@@ -17,6 +18,6 @@ public class PawnMovingStrategy implements MoveStrategy{
             validMove = Optional.of(column + String.valueOf(row));
         }
 
-        return validMove.orElse("No valid moves");
+        return validMove.orElseThrow(() -> new NoValidMoveException("No valid Moves"));
     }
 }
